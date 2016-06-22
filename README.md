@@ -8,7 +8,7 @@ MySQL
 
 ##Dependencies
 
-- Pyhton 2.7 
+- Python 2.7 
 - Django 1.6.1
 
 ##Deploying the App
