@@ -4,6 +4,8 @@ from myapp.models import urls
 from django.http import HttpResponseRedirect, HttpResponse
 from django.conf import settings
 from django.core.context_processors import csrf
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
  
 def index(request):
     c = {}
@@ -18,8 +20,13 @@ def redirect_original(request, short_id):
  
 def shorten_url(request):
     url = request.POST.get("url", '')
+    validate = URLValidator()
     if not (url == ''):
         short_id = get_short_code()
+        try :
+            validate(url)
+        except ValidationError, e:
+            return HttpResponse(json.dumps({"inval":"Invalid URL"}),  content_type="application/json")
         b = urls(httpurl=url, short_id=short_id)
         b.save()
         response_data = {}

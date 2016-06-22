@@ -4,7 +4,6 @@
  <title>{% block title %}Welcome to URLShortener{% endblock %}</title>
  {% load staticfiles %}
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
- <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/custom.css' %}" />
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -28,9 +27,32 @@ function returnSuccess(data) {
  if(data.url) {
  $('#url-result').html("Your Shorted URL is : <a href='"+data.url+"'>"+data.url+"</a>");
  $('#url').val("");
- } else {
+ }
+ else if(data.inval)
+ {
+ 	$('#url').val("");
+ 	alert("Invalid URL!");
+ }
+ else {
  alert("Empty Field");
  }
+
+ $(".clipboard").click(function(){
+ 	copyToClipboard("#url-result");
+     });
+
+ function copyToClipboard(element) {
+ 	try{
+    var $temp = $("<input>")
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");}
+    catch(e)
+    {
+    	console.log("Fail Fail");
+    }
+    $temp.remove();
+}
    
 }
 </script>
