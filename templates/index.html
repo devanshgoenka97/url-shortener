@@ -1,6 +1,6 @@
 {% extends "base.html" %}
   
-{% block title %}URL Shortener - Make your URL shorter!{% endblock %}
+{% block title %}URL Shortener!{% endblock %}
   
 {% block content %}
   
@@ -15,7 +15,14 @@
  </div>
  </div>
  <div class="panel-footer"><span id="url-result">Enter the URL above and click submit!</span></div>
- <button class="clipboard">
- 	Copy to Clipboard</button>
 </div>
+<div class="col-sm-3">
+ <button  id="clipboard" class="btn btn-primary">
+ 	Copy to Clipboard</button>
+  <button  id="facebook" class="btn btn-primary">
+ 	<i class="fa fa-facebook"></i></button>
+  <button  id="twitter" class="btn btn-primary">
+  	<i class="fa fa-twitter"></i>
+ </button>
+ </div>
 {% endblock %}

@@ -4,6 +4,7 @@
  <title>{% block title %}Welcome to URLShortener{% endblock %}</title>
  {% load staticfiles %}
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -37,20 +38,15 @@ function returnSuccess(data) {
  alert("Empty Field");
  }
 
- $(".clipboard").click(function(){
- 	copyToClipboard("#url-result");
+ $("#clipboard").click(function(){
+ 	copyToClipboard("#url-result a");
      });
 
  function copyToClipboard(element) {
- 	try{
     var $temp = $("<input>")
     $("body").append($temp);
     $temp.val($(element).text()).select();
-    document.execCommand("copy");}
-    catch(e)
-    {
-    	console.log("Fail Fail");
-    }
+    document.execCommand("copy");
     $temp.remove();
 }
    
@@ -59,7 +55,7 @@ function returnSuccess(data) {
 <body>
 <div id="wrap">
 <header>
- <h1><a href="#">URL Shortener</a><small>Shorten the URL</small></h1>
+ <h1 style="margin-left:10px"><a href="#">URL Shortener</a><small style="margin-left:15px">Shorten the URL</small></h1>
 </header>
   
 <div id="content2">
