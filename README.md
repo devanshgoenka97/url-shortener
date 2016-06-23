@@ -23,7 +23,7 @@ MySQL
 
  3. Install the MySQL client for python through pip
 
-   `sh pip install mysql-client python-dev`
+   `pip install mysql-client python-dev`
 
  4. In the `settings.py` file inside `MyProject/URLShortener/` change the `DATABASES` -> `ENGINE` to
 
