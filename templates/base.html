@@ -11,6 +11,35 @@
 <meta property="og:title"              content="URL Shortener" />
 <meta property="og:description"        content="Created by Devansh Goenka" />
 </head>
+<style type="text/css">
+.sub {
+  display: inline-block;
+}
+
+.main{
+  display: inline-block;
+}
+
+@media (min-width: 300px) and (max-width: 900px){
+  .main{
+    display: block;
+    text-align: center;
+  }
+
+  .sub{
+      text-align: center;
+      width: 100%;
+      margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px){
+  #submitButton{
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+</style>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -30,7 +59,13 @@
 </script>
 
 <script type="text/javascript">
- $(function() {
+$(document).bind('keypress', function(e) {
+            if(e.keyCode==13){
+                 $('#submitButton').trigger('click');
+             }
+        });
+
+ $(function(){
  $('#submitButton').click(function() {
  $.ajax({
  type: "POST",
@@ -43,7 +78,7 @@
  dataType: 'json'
  });
  });
-});
+ });
 
 function returnSuccess(data) {
  if(data.url) {
@@ -83,7 +118,10 @@ function returnSuccess(data) {
 <body>
 <div id="wrap">
 <header>
- <h1 style="margin-left:10px"><a href="#">URL Shortener</a><small style="margin-left:15px">Shorten the URL</small></h1>
+ <div class="main"><h1 style="margin-left:10px"><a href="#">URL Shortener</a></h1>
+ </div>
+ <div class="sub"><h1><small>Shorten the URL</small></h1>
+ </div>
 </header>
 
 <div id="content2">
