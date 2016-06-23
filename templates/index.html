@@ -8,7 +8,7 @@
  <div class="panel-body">
  <div class="col-sm-9">
  <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.facebook.com" />
- </div>
+ </div> 
  <div class="col-sm-3">
  {% csrf_token %}
  <button id="submitButton" class="btn btn-primary">Submit</button></p> 
@@ -16,13 +16,6 @@
  </div>
  <div class="panel-footer"><span id="url-result">Enter the URL above and click submit!</span></div>
 </div>
-<div class="col-sm-3">
- <button  id="clipboard" class="btn btn-primary">
- 	Copy to Clipboard</button>
-  <button  id="facebook" class="btn btn-primary">
- 	<i class="fa fa-facebook"></i></button>
-  <button  id="twitter" class="btn btn-primary">
-  	<i class="fa fa-twitter"></i>
- </button>
- </div>
+{% block buttons %}
+{% endblock %}
 {% endblock %}

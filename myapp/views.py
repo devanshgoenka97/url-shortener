@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 def index(request):
     c = {}
     c.update(csrf(request))
-    return render_to_response('index.html', c)
+    return render_to_response('buttons.html', c)
  
 def redirect_original(request, short_id):
     url = get_object_or_404(urls, pk=short_id) # get object, if not found return 404 error
