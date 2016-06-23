@@ -1,6 +1,8 @@
 ##Introduction
 
-A Simple URL Shortener, written in Python, supported by the Django Framework
+A Simple URL Shortener, written in Python, supported by the Django Framework        
+This App is live at:
+[URL Shortener] (http://devansh.pythonanywhere.com)
 
 ##Database used
 
