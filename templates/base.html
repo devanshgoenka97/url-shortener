@@ -9,7 +9,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="URL Shortener" />
-<meta property="og:description"        content="The Shortened URL" />
+<meta property="og:description"        content="Created by Devansh Goenka" />
 </head>
 <script>
   window.fbAsyncInit = function() {
@@ -28,7 +28,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-    
+
 <script type="text/javascript">
  $(function() {
  $('#submitButton').click(function() {
@@ -44,7 +44,7 @@
  });
  });
 });
-  
+
 function returnSuccess(data) {
  if(data.url) {
  $('#url-result').html("Your Shorted URL is : <a href='"+data.url+"'>"+data.url+"</a>");
@@ -52,26 +52,22 @@ function returnSuccess(data) {
  }
  else if(data.inval)
  {
- 	$('#url').val("");
- 	alert("Invalid URL!");
+  $('#url').val("");
+  alert("Invalid URL!");
  }
  else {
  alert("Empty Field");
  }
 
  $("#clipboard").click(function(){
- 	copyToClipboard("#url-result a");
+  copyToClipboard("#url-result a");
      });
 
  $("#facebook").click(function(){
     FB.ui({
     method: 'feed',
-    link: 'http://www.google.com'
+    link: 'http://devansh.pythonanywhere.com'
   }, function(response){});
- });
-
- $("#twitter").click(function(){
-    
  });
 
  function copyToClipboard(element) {
@@ -81,7 +77,7 @@ function returnSuccess(data) {
     document.execCommand("copy");
     $temp.remove();
 }
-   
+
 }
 </script>
 <body>
@@ -89,10 +85,10 @@ function returnSuccess(data) {
 <header>
  <h1 style="margin-left:10px"><a href="#">URL Shortener</a><small style="margin-left:15px">Shorten the URL</small></h1>
 </header>
-  
+
 <div id="content2">
 {% block content %}
-  
+
 {% endblock %}
 </div>
 </div>

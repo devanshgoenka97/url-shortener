@@ -1,21 +1,28 @@
 {% extends "base.html" %}
-  
-{% block title %}URL Shortener!{% endblock %}
-  
+
+{% block title %}URL Shortener - Make your URL shorter!{% endblock %}
+
 {% block content %}
-  
+<script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
 <div class="panel panel-default">
  <div class="panel-body">
  <div class="col-sm-9">
  <input type="text" name="url" id="url" class="form-control input-sm" placeholder="http://www.facebook.com" />
- </div> 
+ </div>
  <div class="col-sm-3">
  {% csrf_token %}
- <button id="submitButton" class="btn btn-primary">Submit</button></p> 
+ <button id="submitButton" class="btn btn-primary">Submit</button></p>
  </div>
  </div>
  <div class="panel-footer"><span id="url-result">Enter the URL above and click submit!</span></div>
 </div>
-{% block buttons %}
-{% endblock %}
+<div class="col-sm-3">
+ <button  id="clipboard" class="btn btn-primary" style="margin-bottom:12px">
+ 	Copy to Clipboard</button>
+  <button  id="facebook" class="btn btn-primary" style="margin-bottom:12px">
+ 	<i class="fa fa-facebook"></i></button>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://devansh.pythonanywhere.com" data-text="URL Shortener desgined by Devansh Goenka" data-size="large" style="position:absolute">Tweet</a>
+</div>
 {% endblock %}
