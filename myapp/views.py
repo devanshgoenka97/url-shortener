@@ -21,6 +21,7 @@ def redirect_original(request, short_id):
 def shorten_url(request):
     url = request.POST.get("url", '')
     validate = URLValidator()
+    url = url.lower()
     if not (url == ''):
         if url.startswith('https://'):
             url = "http://" + url[8:]
