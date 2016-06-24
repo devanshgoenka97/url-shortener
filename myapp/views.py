@@ -22,6 +22,8 @@ def shorten_url(request):
     url = request.POST.get("url", '')
     validate = URLValidator()
     if not (url == ''):
+        if url.startswith('https://'):
+            url = "http://" + url[8:]
         if not (url.startswith('http://')):
             url = "http://" + url
         short_id = get_short_code()
