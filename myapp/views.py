@@ -6,7 +6,21 @@ from django.conf import settings
 from django.core.context_processors import csrf
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
- 
+import hashlib
+
+ARR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def encode_base(num, array=ARR):
+    if(num==0):
+        return array[0]
+    retarr=[]
+    base = len(array)
+    while num:
+        num, res = divmod(num,base)
+        retarr.append(array[res])
+    retarr.reverse()
+    return ''.join(retarr)[:6]
+
 def index(request):
     c = {}
     c.update(csrf(request))
@@ -27,7 +41,9 @@ def shorten_url(request):
             url = "http://" + url[8:]
         if not (url.startswith('http://')):
             url = "http://" + url
-        short_id = get_short_code()
+        short_id = (hashlib.md5(url.encode())).hexdigest()
+        short_id = int(short_id,16)
+        short_id = encode_base(short_id)
         try :
             validate(url)
         except ValidationError, e:
@@ -38,14 +54,3 @@ def shorten_url(request):
         response_data['url'] = settings.SITE_URL + "/" + short_id
         return HttpResponse(json.dumps(response_data),  content_type="application/json")
     return HttpResponse(json.dumps({"error": "error occurs"}), content_type="application/json")
- 
-def get_short_code():
-    length = 6
-    char = string.ascii_uppercase + string.digits + string.ascii_lowercase
-    # if the randomly generated short_id is used then generate next
-    while True:
-        short_id = ''.join(random.choice(char) for _ in range(length))
-        try:
-            temp = urls.objects.get(pk=short_id)
-        except:
-            return short_id
